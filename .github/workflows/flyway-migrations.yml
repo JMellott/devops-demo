@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Flyway Docker image
-        run: docker build -t dongne-flyway-image --build-arg FLYWAY_URL=jdbc:mysql://my-mysql-container:3306/mydatabase --build-arg FLYWAY_USER=flyway_user --build-arg FLYWAY_PASSWORD=${{ secrets.MYSQL_PASSWORD }} -f database/Dockerfile.flyway .
+        run: docker build -t dongnae-flyway-image --build-arg FLYWAY_URL=jdbc:mysql://my-mysql-container:3306/mydatabase --build-arg FLYWAY_USER=flyway_user --build-arg FLYWAY_PASSWORD=${{ secrets.MYSQL_PASSWORD }} -f database/Dockerfile.flyway .
 
       - name: Run Flyway migrations
-        run: docker run dongne-flyway-image
+        run: docker run dongnae-flyway-image
