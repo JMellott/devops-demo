@@ -6,7 +6,7 @@ services:
       context: ./database
       dockerfile: Dockerfile.mysql
       args:
-        MYSQL_PASSWORD_ARG: ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD_ARG: ${MYSQL_PASSWORD}
         MYSQL_DATABASE_ARG: ${MYSQL_DATABASE}
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}  # Set the root password

@@ -1,11 +1,11 @@
 FROM mysql:latest
 
 # Define build arguments for MySQL root password and database name
-ARG MYSQL_PASSWORD_ARG
+ARG MYSQL_ROOT_PASSWORD_ARG
 ARG MYSQL_DATABASE_ARG
 
 # Set environment variables using build arguments
-ENV MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD_ARG}
+ENV MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_ARG}
 ENV MYSQL_DATABASE=${MYSQL_DATABASE_ARG}
 
 # Expose port 3306
