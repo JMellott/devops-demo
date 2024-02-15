@@ -1,9 +1,10 @@
 name: MySQL Build
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Docker Compose"]
+    types:
+      - completed
 
 jobs:
   mysql-build:
@@ -30,12 +31,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Debug Secrets
-        run: |
-          echo "MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}"
-          echo "MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}"
-          echo "FLYWAY_USER_PASSWORD: ${{ secrets.FLYWAY_USER_PASSWORD }}"
 
       - name: Start MySQL container
         run: docker-compose up -d mysql
