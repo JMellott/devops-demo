@@ -1,10 +1,7 @@
 name: MySQL Build
 
 on:
-  workflow_run:
-    workflows: ["Docker Compose"]
-    types:
-      - completed
+  workflow_dispatch:
 
 jobs:
   mysql-build:
