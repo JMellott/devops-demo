@@ -48,7 +48,7 @@ jobs:
           docker exec mysql mysql -uroot -p"${{ secrets.MYSQL_PASSWORD }}" -e "FLUSH PRIVILEGES;"
 
       - name: Build Flyway Docker image
-        run: docker build -t dongnae-flyway-image --build-arg FLYWAY_URL=jdbc:mysql://mysql:3306/${{ secrets.MYSQL_DATABASE} --build-arg FLYWAY_USER=flyway_user --build-arg FLYWAY_PASSWORD=${{ secrets.FLYWAY_USER_PASSWORD }} -f database/Dockerfile.flyway .
+        run: docker build -t dongnae-flyway-image --build-arg FLYWAY_URL=jdbc:mysql://mysql:3306/${{ secrets.MYSQL_DATABASE }} --build-arg FLYWAY_USER=flyway_user --build-arg FLYWAY_PASSWORD=${{ secrets.FLYWAY_USER_PASSWORD }} -f database/Dockerfile.flyway .
 
       - name: Run Flyway migrations
         run: docker run dongnae-flyway-image
