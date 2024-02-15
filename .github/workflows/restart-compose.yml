@@ -1,0 +1,23 @@
+name: Restart Docker Compose
+
+on:
+  workflow_dispatch:  # Manually trigger the workflow
+
+jobs:
+  restart-compose:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Docker
+        run: |
+          sudo apt-get update
+          sudo apt-get install docker.io -y
+          sudo apt-get install docker-compose -y
+
+      - name: Restart Docker Compose services
+        run: |
+          docker-compose down
+          docker-compose up -d
