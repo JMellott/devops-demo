@@ -1,0 +1,13 @@
+# Use the official Flyway image as base
+FROM flyway/flyway:latest
+
+# Set environment variables for Flyway
+ARG FLYWAY_URL_ARG
+ARG FLYWAY_USER_ARG
+ARG FLYWAY_PASSWORD_ARG
+ENV FLYWAY_URL=$FLYWAY_URL_ARG
+ENV FLYWAY_USER=$FLYWAY_USER_ARG
+ENV FLYWAY_PASSWORD=$FLYWAY_PASSWORD_ARG
+
+# Copy SQL migration scripts into the Docker image
+COPY ./migrations /flyway/sql

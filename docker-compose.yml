@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysql:
+    build:
+      context: ./database
+      dockerfile: Dockerfile.mysql
+      args:
+        MYSQL_PASSWORD_ARG: ${MYSQL_PASSWORD}
+        MYSQL_DATABASE_ARG: ${MYSQL_DATABASE}
+    environment:
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "3306:3306"  # Expose MySQL port to host
+
+  flyway:
+    build:
+      context: ./database
+      dockerfile: Dockerfile.flyway
+    environment:
+      FLYWAY_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
+      FLYWAY_USER: flyway-user
+      FLYWAY_PASSWORD: ${FLYWAY_USER_PASSWORD}
+    depends_on:
+      - mysql
