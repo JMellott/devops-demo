@@ -9,7 +9,7 @@ services:
         MYSQL_PASSWORD_ARG: ${MYSQL_PASSWORD}
         MYSQL_DATABASE_ARG: ${MYSQL_DATABASE}
     environment:
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}  # Set the root password
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "3306:3306"  # Expose MySQL port to host
