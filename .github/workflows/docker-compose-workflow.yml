@@ -30,4 +30,7 @@ jobs:
 
       - name: Build and Push Docker Images
         run: docker-compose build --build-arg MYSQL_ROOT_PASSWORD_ARG="${{ secrets.MYSQL_PASSWORD }}" --build-arg MYSQL_DATABASE_ARG="${{ secrets.MYSQL_DATABASE }}"
+      
+      - name: Start Docker Services
+        run: |
           docker-compose up -d
