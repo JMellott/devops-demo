@@ -1,26 +1,17 @@
-version: '3.8'
+version: '3'
 
 services:
-  mysql:
-    build:
-      context: ./database
-      dockerfile: Dockerfile.mysql
-      args:
-        MYSQL_ROOT_PASSWORD_ARG: ${MYSQL_PASSWORD}
-        MYSQL_DATABASE_ARG: ${MYSQL_DATABASE}
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}  # Set the root password
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-    ports:
-      - "3306:3306"  # Expose MySQL port to host
-
   flyway:
-    build:
-      context: ./database
-      dockerfile: Dockerfile.flyway
-    environment:
-      FLYWAY_URL: jdbc:mysql://mysql:3306/${MYSQL_DATABASE}
-      FLYWAY_USER: flyway-user
-      FLYWAY_PASSWORD: ${FLYWAY_USER_PASSWORD}
+    image: flyway/flyway
+    command: -url=jdbc:mysql://mysql:3306/${MYSQL_DATABASE} -schemas=myschema -user=flyway_user -password=${FLYWAY_USER_PASSWORD} -connectRetries=60 migrate
+    volumes:
+      - .:/flyway/sql
     depends_on:
-      - mysql
+      - db
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
