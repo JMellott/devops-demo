@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-FLYWAY_USER_PASSWORD: ${{ secrets.FLYWAY_USER_PASSWORD }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  FLYWAY_USER_PASSWORD: ${{ secrets.FLYWAY_USER_PASSWORD }}
 
 jobs:
   build:
